@@ -4,6 +4,7 @@ const aws4 = require('aws4')
 const URL = require('url')
 const http = require('superagent-promise')(require('superagent'), Promise)
 const mode = process.env.TEST_MODE
+const util = require('util')
 
 const respondFrom = async (httpRes) => {
     const contentType = _.get(httpRes, 'headers.content-type', 'application/json')
