@@ -20,7 +20,8 @@
     "mock-aws": "^1.2.3",
     "serverless": "^1.28.0",
     "serverless-iam-roles-per-function": "^1.0.4",
-    "serverless-pseudo-parameters": "^1.6.0"
+    "serverless-pseudo-parameters": "^1.6.0",
+    "util": "^0.11.1"
   },
   "dependencies": {
     "aws-sdk": "^2.273.1",
