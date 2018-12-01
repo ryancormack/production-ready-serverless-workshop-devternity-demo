@@ -12,6 +12,14 @@ provider:
   tags:
     TEAM: test
     ryan: devternity
+  environment:
+    log_level: ${self:custom.logLevel.${self:custom.stage}, self:custom.logLevel.default}
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  logLevel:
+    prod: INFO
+    default: DEBUG
 
 functions:
   get-index:
