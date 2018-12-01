@@ -4,6 +4,7 @@ const AWS = require('aws-sdk')
 const kinesis = new AWS.Kinesis()
 const sns = new AWS.SNS()
 const Log = require('../lib/log')
+const wrap = require('../lib/wrapper')
 
 const streamName = process.env.order_events_stream
 const topicArn = process.env.restaurant_notification_topic
