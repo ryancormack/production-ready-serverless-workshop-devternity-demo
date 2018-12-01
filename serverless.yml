@@ -3,6 +3,7 @@ service: workshop-ryan
 plugins:
   - serverless-pseudo-parameters
   - serverless-iam-roles-per-function
+  - serverless-plugin-tracing
 
 provider:
   name: aws
@@ -14,12 +15,22 @@ provider:
     ryan: devternity
   environment:
     log_level: ${self:custom.logLevel.${self:custom.stage}, self:custom.logLevel.default}
+  tracing: true
+  iamRoleStatements:
+  - Effect: "Allow"
+    Action:
+      - "xray:PutTraceSegments"
+      - "xray:PutTelemetryRecords"
+    Resource:
+      - "*"
 
 custom:
   stage: ${opt:stage, self:provider.stage}
   logLevel:
     prod: INFO
     default: DEBUG
+  serverless-iam-roles-per-function:
+    defaultInherit: true
 
 functions:
   get-index:
