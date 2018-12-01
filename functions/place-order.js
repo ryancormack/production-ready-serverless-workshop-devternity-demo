@@ -21,8 +21,12 @@ module.exports.handler = async (event, context) => {
     StreamName: streamName
   }
 
-  await kinesis.putRecord(req).promise()
-
+  try {
+    const putResponse = await kinesis.putRecord(req).promise()
+  } catch (error) {
+    console.log(`Error occured: ${error}`)
+  }
+  
   console.log(`published 'order_placed' event into Kinesis`)
 
   const response = {
