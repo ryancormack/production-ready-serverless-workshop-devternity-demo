@@ -5,6 +5,7 @@ const { REGION, STAGE } = process.env
 const AWS = require('aws-sdk')
 AWS.config.region = REGION
 const SSM = new AWS.SSM()
+const util = require('util')
 
 let initialized = false
 

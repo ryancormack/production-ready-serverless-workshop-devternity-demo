@@ -73,9 +73,8 @@ const respondFrom = async (httpRes) => {
       }
     }
   }
-
-const viaHandler = async (event, functionName) => {
-    const handler = require(`${APP_ROOT}/functions/${functionName}`).handler
+  const viaHandler = async (event, functionName) => {
+    const handler = util.promisify(require(`${APP_ROOT}/functions/${functionName}`).handler)
     console.log(`invoking via handler function ${functionName}`)
   
     const context = {}

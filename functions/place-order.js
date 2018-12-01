@@ -4,7 +4,7 @@ const chance     = require('chance').Chance()
 const streamName = process.env.order_events_stream
 const Log = require('../lib/log')
 
-module.exports.handler = async (event, context) => {
+module.exports.handler = wrap(async (event, context) => {
   const restaurantName = JSON.parse(event.body).restaurantName
 
   const orderId = chance.guid()
@@ -31,4 +31,4 @@ module.exports.handler = async (event, context) => {
   }
 
   return response
-}
+})

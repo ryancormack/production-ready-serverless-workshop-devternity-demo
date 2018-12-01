@@ -8,7 +8,7 @@ const Log = require('../lib/log')
 const streamName = process.env.order_events_stream
 const topicArn = process.env.restaurant_notification_topic
 
-module.exports.handler = async (event, context) => {
+module.exports.handler = wrap(async (event, context) => {
   const records = getRecords(event)
   const orderPlaced = records.filter(r => r.eventType === 'order_placed')
 
@@ -31,4 +31,4 @@ module.exports.handler = async (event, context) => {
     await kinesis.putRecord(kinesisReq).promise()
     Log.debug(`published 'restaurant_notified' event to Kinesis`)
   }  
-}
+})
